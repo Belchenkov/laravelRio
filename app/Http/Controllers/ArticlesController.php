@@ -58,7 +58,12 @@ class ArticlesController extends SiteController
 
     public function getComments($take)
     {
-        return $this->c_rep->get(['text', 'name', 'email', 'site', 'article_id', 'user_id'], $take);
+        $comments =  $this->c_rep->get(['text', 'name', 'email', 'site', 'article_id', 'user_id'], $take);
+        if ($comments) {
+            $comments->load('article', 'user');
+        }
+
+        return $comments;
     }
 
     public function getPortfolios($take)
