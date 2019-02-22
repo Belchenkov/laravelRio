@@ -13,6 +13,6 @@ class Comment extends Model
 
     public function user()
     {
-        return $this->hasMany('Corp\User');
+        return $this->belongsTo('Corp\User');
     }
 }
