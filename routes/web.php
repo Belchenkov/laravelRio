@@ -19,6 +19,7 @@ Route::get('articles/cat/{cat_alias?}', [
     'as' => 'articlesCat'
 ]);
 
+Route::resource('comment', 'CommentController', ['only' => ['store']]);
 
 Auth::routes();
 

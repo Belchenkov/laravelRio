@@ -8,7 +8,7 @@
                 @set($hash, isset($item->email) ? md5($item->email) : md5($item->user->email))
                 <img
                     alt=""
-                    src="https://www.gravatar.com/avatar/{{$hash}}?d==mm&s=75"
+                    src="https://www.gravatar.com/avatar/{{$hash}}?d=mm&s=75"
                     class="avatar"
                     height="75"
                     width="75"
