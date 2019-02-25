@@ -16,6 +16,9 @@ jQuery(document).ready(function () {
                let data = $('#commentform').serializeArray();
 
                $.ajax({
+                   headers: {
+                       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                   },
                    url: $('#commentform').attr('action'),
                    data: data,
                    type: 'POST',
