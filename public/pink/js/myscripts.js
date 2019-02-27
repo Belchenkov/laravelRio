@@ -25,7 +25,9 @@ jQuery(document).ready(function () {
                    dataType: 'JSON',
                    success: function (html) {
                        if (html.error) {
-
+                            $('.wrap_result').css('color', 'red')
+                                .append('<br /><strong>Ошибка: </strong>' + html.error.join('<br />'));
+                           $('.wrap_result').delay(2000).fadeOut(500);
                        } else if (html.success) {
                            $('.wrap_result').append('<br><strong>Сохранено!</strong>')
                                .delay(2000)
@@ -34,6 +36,14 @@ jQuery(document).ready(function () {
                                         comParent.parents('div#respond')
                                             .prev()
                                             .after( '<ul class="children">' + html.comment + '</ul>')
+                                   } else {
+                                       if ($.contains('#comments', 'ol.commentlist')) {
+                                            $('ol.commentlist').append(html.comment);
+                                       } else {
+                                            $('#respond').before(
+                                                '<ol class="commentlist group">' + html.comment + '</ol>'
+                                            );
+                                       }
                                    }
 
                                    $('#cancel-comment-reply-link').click();
@@ -41,7 +51,12 @@ jQuery(document).ready(function () {
                        }
                    },
                    error: function () {
-                       
+                        $('wrap_result').css('color', 'red')
+                            .append('<br /><strong>Ошибка: </strong>' + html.error.join('<br />'))
+                            .delay(2000)
+                            .fadeOut(500, function () {
+                                $('#cancel-comment-reply-link').click();
+                            });
                    }
                });
            });
