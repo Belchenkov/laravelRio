@@ -13,7 +13,7 @@ class ChangePortfoliosTable extends Migration
      */
     public function up()
     {
-        Schema::table('portfolios', function (Blueprint $table) {
+        Schema::table('portfolios.blade.php', function (Blueprint $table) {
             $table->string('filter_alias');
             $table->foreign('filter_alias')->references('alias')->on('filters');
         });
@@ -26,7 +26,7 @@ class ChangePortfoliosTable extends Migration
      */
     public function down()
     {
-        Schema::table('portfolios', function (Blueprint $table) {
+        Schema::table('portfolios.blade.php', function (Blueprint $table) {
             //
         });
     }

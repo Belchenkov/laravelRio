@@ -23,7 +23,7 @@
                                 </div>
                             </div>
                             <div class="work-description">
-                                <h2><a href="{{route('portfolios.show', ['alias' => $item->alias])}}">{{ $item->title }}</a></h2>
+                                <h2><a href="{{route('portfolios.blade.php', ['alias' => $item->alias])}}">{{ $item->title }}</a></h2>
                                 <p class="work-categories">in: <a href="category.html">{{$item->filter->title}}</a></p>
                                     <p>{{ str_limit($item->text, 200) }}</p>
                                 <a href="{{route('portfolios.show', ['alias' => $item->alias])}}" class="read-more">|| Read more</a>
