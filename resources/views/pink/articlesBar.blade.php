@@ -14,7 +14,7 @@
                     </div>
                     <div class="text">
                         <a
-                            href="{{route('portfolios.blade.php', ['alias' => $portfolio->alias])}}"
+                            href="{{route('portfolios.show', ['alias' => $portfolio->alias])}}"
                             title="{{$portfolio->title}}">
                             {{$portfolio->title}}
                         </a>

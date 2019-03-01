@@ -21,7 +21,7 @@
                                     ></a>
                                     <a
                                         class="overlay_project"
-                                        href="{{route('portfolios.show', ['alias', $portfolio->alias])}}"
+                                        href="{{route('portfolios.show', ['alias' => $portfolio->alias])}}"
                                     ></a>
                                     <span class="overlay_title">{{$portfolio->title}}</span>
                                 </div>
@@ -44,7 +44,7 @@
                             </div>
                             <a
                                 class="read-more"
-                                href="{{route('portfolios.show', ['alias', $portfolio->alias])}}"
+                                href="{{route('portfolios.show', ['alias' => $portfolio->alias])}}"
                             >{{\Lang::get('ru.view_project') }}</a>
                         </div>
                         <div class="clear"></div>
