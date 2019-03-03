@@ -13,7 +13,7 @@ class CreatePortfoliosTable extends Migration
      */
     public function up()
     {
-        Schema::create('portfolios', function (Blueprint $table) {
+        Schema::create('portfolios.blade.php', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title', 255);
             $table->text('text');
@@ -31,6 +31,6 @@ class CreatePortfoliosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('portfolios');
+        Schema::dropIfExists('portfolios.blade.php');
     }
 }

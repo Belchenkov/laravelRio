@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class ChangePortfoliosTable extends Migration
+class ChangePortfoliosTable2 extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class ChangePortfoliosTable extends Migration
      */
     public function up()
     {
-        Schema::table('portfolios.blade.php', function (Blueprint $table) {
-            $table->string('filter_alias');
-            $table->foreign('filter_alias')->references('alias')->on('filters');
+        Schema::table('portfolios', function (Blueprint $table) {
+            $table->string('keywords');
+            $table->string('meta_desc');
         });
     }
 
@@ -26,7 +26,7 @@ class ChangePortfoliosTable extends Migration
      */
     public function down()
     {
-        Schema::table('portfolios.blade.php', function (Blueprint $table) {
+        Schema::table('portfolios', function (Blueprint $table) {
             //
         });
     }
