@@ -18,7 +18,6 @@ class ContactsController extends SiteController
 
     public function index(Request $request)
     {
-        dd($request->all());
         if ($request->isMethod('post')) {
 
             $messages = [

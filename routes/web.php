@@ -1,5 +1,11 @@
 <?php
 
+Auth::routes();
+
+/*Route::get('login', 'Auth\LoginController@showLoginForm');
+Route::get('logout', 'Auth\LoginController@logout');
+Route::post('login', 'Auth\LoginController@showLoginForm');*/
+
 Route::resource('/', 'IndexController', [
     'only' => ['index'],
     'names' => [
@@ -25,3 +31,4 @@ Route::match(['get', 'post'], '/contacts', ['uses' => 'ContactsController@index'
 
 Auth::routes();
 
+Route::get('/home', 'HomeController@index')->name('home');
