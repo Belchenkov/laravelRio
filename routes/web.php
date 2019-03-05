@@ -1,5 +1,11 @@
 <?php
 
+Auth::routes();
+
+/*Route::get('login', 'Auth\LoginController@showLoginForm');
+Route::get('logout', 'Auth\LoginController@logout');
+Route::post('login', 'Auth\LoginController@showLoginForm');*/
+
 Route::resource('/', 'IndexController', [
     'only' => ['index'],
     'names' => [
@@ -25,3 +31,9 @@ Route::match(['get', 'post'], '/contacts', ['uses' => 'ContactsController@index'
 
 Auth::routes();
 
+// admin
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
+    // admin
+    Route::get('/', ['uses' => 'Admin\IndexController@index', 'as' => 'adminIndex']);
+    Route::resource('/articles', 'Admin\ArticlesController');
+});
