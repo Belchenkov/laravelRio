@@ -31,4 +31,9 @@ Route::match(['get', 'post'], '/contacts', ['uses' => 'ContactsController@index'
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// admin
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
+    // admin
+    Route::get('/', ['uses' => 'Admin\IndexController@index', 'as' => 'adminIndex']);
+    Route::resource('/articles', 'Admin\ArticlesController');
+});
