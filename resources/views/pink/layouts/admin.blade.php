@@ -26,7 +26,8 @@
 
     <!-- JAVASCRIPTs -->
     <script type="text/javascript" src="{{ asset(env('THEME')) }}/js/jquery.js"></script>
-    <script type="text/javascript" src="{{ asset(env('THEME')) }}/js/ckeditor/ckeditor.js"></script>
+    <script src="https://cdn.ckeditor.com/4.11.3/standard/ckeditor.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-filestyle/2.1.0/bootstrap-filestyle.min.js"></script>
     <script type="text/javascript" src="{{ asset(env('THEME')) }}/js/bootstrap-filestyle.min.js"></script>
 </head>
 <!-- END HEAD -->
