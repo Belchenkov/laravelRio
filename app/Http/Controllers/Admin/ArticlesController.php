@@ -3,6 +3,7 @@
 namespace Corp\Http\Controllers\Admin;
 
 use Corp\Category;
+use Corp\Http\Requests\ArticleRequest;
 use Corp\Repositories\ArticlesRepository;
 use Illuminate\Http\Request;
 use Corp\Http\Controllers\Controller;
@@ -81,9 +82,15 @@ class ArticlesController extends AdminController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ArticleRequest $request)
     {
-        //
+        $result = $this->a_rep->addArticle($request);
+
+        if (is_array($result) && !empty($result['error'])) {
+            return back()->with($result);
+        }
+
+        return redirect('/admin')->with($result);
     }
 
     /**
