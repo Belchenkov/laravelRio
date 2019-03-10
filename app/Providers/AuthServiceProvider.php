@@ -13,7 +13,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        'Corp\Model' => 'Corp\Policies\ModelPolicy',
+        'Corp\Article' => 'Corp\Policies\ArticlePolicy',
     ];
 
     /**
@@ -25,6 +25,12 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('VIEW_ADMIN', function ($user) {
+            return $user->canDo('VIEW_ADMIN');
+        });
+
+        Gate::define('VIEW_ADMIN_ARTICLES', function ($user) {
+            return $user->canDo('VIEW_ADMIN_ARTICLES');
+        });
     }
 }
