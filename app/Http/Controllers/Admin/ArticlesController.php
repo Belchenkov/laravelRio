@@ -2,11 +2,11 @@
 
 namespace Corp\Http\Controllers\Admin;
 
+use Corp\Article;
 use Corp\Category;
 use Corp\Http\Requests\ArticleRequest;
 use Corp\Repositories\ArticlesRepository;
 use Illuminate\Http\Request;
-use Corp\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Gate;
 
 class ArticlesController extends AdminController
@@ -110,9 +110,33 @@ class ArticlesController extends AdminController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($alias)
     {
-        //
+        $article = Article::where('alias', $alias)->first();
+
+        /*if (Gate::denies('edit', new Article)) {
+            abort(403);
+        }*/
+        $article->img = json_decode($article->img);
+
+        $categories = Category::select(['title', 'alias', 'parent_id', 'id'])->get();
+
+        foreach ($categories as $category) {
+            if ($category->parent_id == 0) {
+                $lists[$category->title] = [];
+            } else {
+                $lists[$categories->where('id', $category->parent_id)->first()->title][$category->id] = $category->title;
+            }
+        }
+
+        $this->title = 'Редактирование материала - ' . $article->title;
+
+        $this->content = view(env('THEME') . '.admin.articles_create_content')
+            ->with('categories', $lists)
+            ->with('article', $article)
+            ->render();
+
+        return $this->renderOutput();
     }
 
     /**
