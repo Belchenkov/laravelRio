@@ -84,4 +84,66 @@ class ArticlesRepository extends Repository
             }
         }
     }
+
+    public function updateArticle($request, $article)
+    {
+        /*
+        if (Gate::denies('edit', $this->model)) {
+           abort(403);
+        }*/
+
+        $data = $request->except('_token', 'image', '_method');
+
+        if (empty($data)) {
+            return [
+                'error' => 'Нет данных'
+            ];
+        }
+
+        if (empty($data['alias'])) {
+            $data['alias'] = $this->transliterate($data['title']);
+        }
+
+        $result = $this->one($data['alias'], false);
+
+        if (isset($result->id) && ($result->id != $article->id)) {
+            $request->merge(['alias' => $data['alias']]);
+            $request->flash();
+
+            return ['error' => 'Данный псевдоним уже используется'];
+        }
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+
+            if ($image->isValid()) {
+                $str = str_random(8);
+
+                $obj = new \stdClass();
+
+                $obj->mini = $str . '_mini.jpg';
+                $obj->max = $str . '_max.jpg';
+                $obj->path = $str . '.jpg';
+
+                $img = Image::make($image);
+                // Path
+                $img->fit(config('settings.image.width'), config('settings.image.height'))
+                    ->save(public_path() . '/' . env('THEME') . '/images/articles/' . $obj->path);
+                // Max
+                $img->fit(config('settings.articles_img.max.width'), config('settings.articles_img.max.height'))
+                    ->save(public_path() . '/' . env('THEME') . '/images/articles/' . $obj->max);
+                // Mini
+                $img->fit(config('settings.articles_img.mini.width'), config('settings.articles_img.mini.height'))
+                    ->save(public_path() . '/' . env('THEME') . '/images/articles/' . $obj->mini);
+
+                $data['img'] = json_encode($obj);
+            }
+        }
+
+        $article->fill($data);
+
+        if ($article->update()) {
+            return ['status' => 'Материал обновлен!'];
+        }
+    }
 }
