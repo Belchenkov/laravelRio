@@ -43,12 +43,12 @@ class Role extends Model
     public function savePermissions($inputPermissions) {
 
         if(!empty($inputPermissions)) {
-            $this->perms()->sync($inputPermissions);
+            $this->permissions()->sync($inputPermissions);
         }
         else {
-            $this->perms()->detach();
+            $this->permissions()->detach();
         }
 
-        return TRUE;
+        return true;
     }
 }
