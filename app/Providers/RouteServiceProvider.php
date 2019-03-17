@@ -2,6 +2,7 @@
 
 namespace Corp\Providers;
 
+use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -19,11 +20,16 @@ class RouteServiceProvider extends ServiceProvider
     /**
      * Define your route model bindings, pattern filters, etc.
      *
+     * @param Router $router
      * @return void
      */
     public function boot()
     {
         parent::boot();
+        $router = app('router');
+        $router->bind('articles', function ($value) {
+            return \Corp\Article::where('alias', $value)->first();
+        });
     }
 
     /**

@@ -14,6 +14,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         'Corp\Article' => 'Corp\Policies\ArticlePolicy',
+        'Corp\Permission' => 'Corp\Policies\PermissionPolicy',
     ];
 
     /**
@@ -31,6 +32,10 @@ class AuthServiceProvider extends ServiceProvider
 
         Gate::define('VIEW_ADMIN_ARTICLES', function ($user) {
             return $user->canDo('VIEW_ADMIN_ARTICLES');
+        });
+
+        Gate::define('EDIT_USERS', function ($user) {
+            return $user->canDo('EDIT_USERS');
         });
     }
 }
