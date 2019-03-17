@@ -1,7 +1,7 @@
 <div id="content-page" class="content group">
 				            <div class="hentry group">
 
-{!! Form::open(['url' => (isset($menu->id)) ? route('admin.menus.update',['menus'=>$menu->id]) : route('admin.menus.store'),'class'=>'contact-form','method'=>'POST','enctype'=>'multipart/form-data']) !!}
+{!! Form::open(['url' => (isset($menu->id)) ? route('menus.update',['menus'=>$menu->id]) : route('menus.store'),'class'=>'contact-form','method'=>'POST','enctype'=>'multipart/form-data']) !!}
     
 	<ul>
 		
@@ -30,7 +30,7 @@
 		</li>
 	</ul>	
 		
-		<h1">Тип меню:</h1>
+		<h1>Тип меню:</h1>
 		
 		<div id="accordion">
 		
