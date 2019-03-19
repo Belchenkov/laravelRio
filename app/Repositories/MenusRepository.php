@@ -11,5 +11,10 @@ class MenusRepository extends Repository
         $this->model = $menu;
     }
 
+    public function addMenu($request)
+    {
+        $data = $request->only('type', 'title', 'parent');
 
+        dd($data);
+    }
 }

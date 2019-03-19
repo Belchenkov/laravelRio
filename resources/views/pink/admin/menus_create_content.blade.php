@@ -116,16 +116,9 @@
 					</label>
 					<div class="input-prepend">
 					{!! Form::select('filter_alias', $filters, (isset($option) && $option) ? $option :FALSE, ['placeholder' => 'Не используется']) !!}
-			
 					</div>
-					 
 				</li>
-				
-			
 			</ul>
-			
-			
-			
 		</div>
 		
 		<br />
@@ -139,15 +132,6 @@
 						{!! Form::button('Сохранить', ['class' => 'btn btn-the-salmon-dance-3','type'=>'submit']) !!}			
 			</li>	
 		</ul>
-		 
-	
-	
-    
-    
-    
-    
 {!! Form::close() !!}
-
-
 </div>
 </div>
