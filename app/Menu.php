@@ -11,4 +11,11 @@ class Menu extends Model
         'path',
         'parent'
     ];
+
+    public function delete(array $options = [])
+    {
+        self::where('parent', $this->id)->delete();
+
+        return parent::delete($options);
+    }
 }
